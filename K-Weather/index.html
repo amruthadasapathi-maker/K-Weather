@@ -1,0 +1,285 @@
+<html>
+<head>
+<body>
+   <center><header><h2>K-WEATHER</h2></header></center>
+<style>
+.avgTemp{
+    border-radius: 20px;
+    border: 1px solid black;
+    width:28%;
+    height: 70%;
+    margin-top: 40px;
+    font-size:40px;
+    font-family:Arial, Helvetica, sans-serif;
+    float: left;
+}
+.minTemp{
+    font-size:35px;
+}
+.maxTemp{
+    font-size:35px;
+}
+.humidity{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 350px;
+    height: 100px;
+    float: right;
+    margin-right:35px;
+    margin-top:40px;
+    overflow:auto;
+}
+.clouds{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+    float:right;
+    margin-right:35px;
+    margin-top: 40px;
+    overflow:auto;
+}
+.rain{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+    float: right;
+    margin-right:35px;
+    margin-top: 40px;
+    overflow:auto;
+}
+.windspeed{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 375px;
+    height: 100px;
+    float:right;
+    margin-right:35px;
+    margin-top:55px;
+    overflow:auto;
+}
+.search-bar {
+    width: 45%;
+    height: 50px;              
+    border-radius: 20px;
+    border: 3.5px solid black;
+    box-sizing: border-box;
+    padding: 0 15px;           
+    line-height: normal;       
+}
+.main{
+    margin-top: 20px;
+    border-radius:20px;
+    border:3px solid black;
+    height:50%;
+    width:145%;
+}
+.tempfont{
+    font-size: 30px;
+    font-family:'Arial Narrow Bold', sans-serif;
+}
+.weekDat{
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 160%;
+    height: 35%;
+    margin-left: 3px;
+    overflow: auto;
+}
+.daysStyle{
+    float: right;
+    margin-right: 85px;
+    justify-content: left;
+    word-spacing: 58px;
+}
+.visibility{
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 46%;
+    height: auto;
+    display: inline-block;
+    vertical-align:top;
+}
+.uvIndex{
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 46%;
+    height: auto;
+    display: inline-block;
+    vertical-align:top; 
+}
+.prepProb{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 375px;
+    height: 100px;
+    float: right;
+    margin-top:55px;
+    margin-right:35px;
+    overflow:auto;
+}
+.mainx{
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 100%;
+    height: 30%;
+    text-align:center;
+}
+.windDirection{
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 180px;
+    height: auto;
+    vertical-align:top;
+    display:inline-block;
+    margin-right:5%;
+}
+.styleWind{
+    font-size:30px;
+}
+.aqi{
+    font-size:100px;
+    border: 0px;
+    width: 20%;
+    height: auto;
+    vertical-align:top;
+    display:inline-block;
+}
+.aqiDes{
+    border: 3px solid black;
+    border-radius:20px;
+    width: 32%;
+    height: auto;
+    font-size:40px;
+    overflow: auto;
+    vertical-align:top;
+    display:inline-block;
+    margin-left:5%;
+}
+.news{
+    border-radius:20px;
+    height:35%;
+    width:110%;
+    border:3px solid black;
+    font-size: 30px;
+    overflow: auto;
+}
+.hPa{
+    border-radius:20px;
+    height:250px;
+    width:290px;
+    border: 3px solid black;
+    font-size:45px;
+}
+.uav{
+  height:25%;
+  width:100%;
+  border:0px;
+  text-align: center;
+}
+.ao{
+  float:left;
+  margin-left:200px;
+}
+.at{
+  float:left;
+  margin-left:255px;
+}
+.att{
+  float:left;
+  margin-left:255px;
+} 
+.af{
+  float:left;
+  margin-left:255px;
+}
+.aff{
+  float:left;
+  margin-left:255px;
+}
+.daysData{
+  display:inline-block;
+}
+</style>
+<input type="text" id="input" placeholder="enter location" class ="search-bar">
+<button onclick = "reload()">REFRESH</button>
+<button onclick="Temperature()">LOAD DATA</button>
+<br>
+<br>
+<div class = "main">
+<div  class="avgTemp">
+    <center><h3>Temperature</h3></center>
+<center><p id = "avgTemp" class="tempfont">
+</p></center>
+<center><p id = "minTemp" class="mintemp"></p></center>
+<center><p id = "maxTemp" class="maxtemp"></p></center>
+</div>
+<div class ="humidity">
+    <p id = "humidity"></p>
+</div>
+<div class ="rain">
+    <p id = "rain"></p>
+</div>
+<div class ="clouds">
+    <p id = "clouds"></p>
+</div>
+<div class ="windspeed">
+    <p id = "windspeed"></p>
+</div>
+<div class = "prepProb">
+    <p id = "prepProb"></p>
+</div>
+</div>
+<br>
+<div class = "weekDat">
+    <p id = "days" class="daysStyle"></p>
+    <div class="daysData">
+    <p class="ao" id="firstDay"></p>
+    <p class="at" id="secondDay"></p>
+    <p class="att" id="thirdDay"></p>
+    <p class ="af" id="fourthDay"></p>
+    <p class="aff" id="fifthDay"></p>
+    </div>
+    </div>
+</div>
+</div>
+<br>
+<div class = "uav">
+<div class = "visibility">
+    <center><p id = "visibility">
+    </p></center>
+</div>
+<div class = "uvIndex">
+    <center><p id = "uvIndex"></p></center>
+</div>
+</div>
+<br>
+<div class = "news">
+    <center><header><h3>Tempestas : Latest Weather News now directly delivered to your Kindle</h3></header></center>
+<center><p id = "news"></p></center>
+</div>
+<br>
+<div class = "mainx">
+         <center><h3>Air-Quality-Index & Wind-Direction</h3></center>
+        <div class = "windDirection">
+            <center><h6>Wind Direction</h6></center>
+    <center><p id = "windDirection" class = "styleWind"></p></center>
+        </div>
+        <div class = "aqi">
+    <center><p id = "API"></p></center>
+</div>
+<div class = "aqiDes">
+    <p id = "aqiDes"></p>
+</div>
+</div>
+<br>
+<center><div>
+    <h2>Atmpospheric Pressure</h2>
+    <center><p id = "hPa" class = "hPa"></p></center>
+</div></center>
+<script src = "polyfill.js"></script>
+<script src = "logic.js"></script>
+</body>
+</head>
+</html>
